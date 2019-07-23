@@ -22,6 +22,11 @@ public final class Core {
         try {
             jr = new JsonReader("https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=49539b7b95b049a8703af6705cc3042ae7ac75b6");
             JSONObject json = jr.getJson();
+            //TODO: REMOVER COLCHETES FORMATACAO ORGANIZATEJSON -> JSONREADER
+            //TESTAR CRIPTOALGORITHMSHA1
+            //IMPLEMENTAR NUMERO_CASAS CRIPTOALGORITHMCAESAR
+            //INSERIR DADOS ALTERADOS NO NOVO ARQUIVO JSON
+            //TERMINAR JSONSENDER
             if(JsonSaver.saveJson(json)){
                 System.out.println("BOA!");
             }

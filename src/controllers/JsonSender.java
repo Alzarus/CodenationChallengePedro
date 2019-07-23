@@ -22,6 +22,7 @@ public class JsonSender {
        httpClient = HttpClientBuilder.create().build(); //Use this instead 
    }
    //https://stackoverflow.com/questions/7181534/http-post-using-json-in-java
+   //TERMINAR
    public boolean sendJson(JSONObject json){
         HttpPost request;
         StringEntity params;
