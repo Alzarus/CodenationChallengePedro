@@ -12,16 +12,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import java.nio.charset.Charset;
-import java.util.Iterator;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-//import com.google.gson.Gson;
 
 public class JsonReader {
 
@@ -67,11 +63,11 @@ public class JsonReader {
 //            https://stackoverflow.com/questions/4576352/remove-all-occurrences-of-char-from-string
 //https://stackoverflow.com/questions/15609306/convert-string-to-json-array
             //TODO NAO ESTA ORDENANDO CORRETAMENTE
-            organizatedJson.append("numero_casas", json.get("numero_casas").toString().replaceAll("\\[]", ""));
-            organizatedJson.append("token", json.get("token").toString().replaceAll("\\[]", ""));
-            organizatedJson.append("cifrado", json.get("cifrado").toString().replaceAll("\\[]", ""));
-            organizatedJson.append("decifrado", json.get("decifrado").toString().replaceAll("\\[]", ""));
-            organizatedJson.append("resumo_criptografico", json.get("resumo_criptografico").toString().replaceAll("\\[]", ""));
+            organizatedJson.append("numero_casas", json.get("numero_casas").toString().replaceAll("\\[\\]", ""));
+            organizatedJson.append("token", json.get("token").toString().replaceAll("\\[\\]", ""));
+            organizatedJson.append("cifrado", json.get("cifrado").toString().replaceAll("\\[\\]", ""));
+            organizatedJson.append("decifrado", json.get("decifrado").toString().replaceAll("\\[\\]", ""));
+            organizatedJson.append("resumo_criptografico", json.get("resumo_criptografico").toString().replaceAll("\\[\\]", ""));
             
             return organizatedJson;
             

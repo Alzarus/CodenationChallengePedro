@@ -14,7 +14,8 @@ public class JsonSaver {
         File answer = new File("./answer.json");
         try {
             FileWriter fw = new FileWriter(answer);
-            fw.write(JsonReader.organizateJson(json).toString());
+            fw.write(json.toString());
+//            fw.write(JsonReader.organizateJson(json).toString());
             fw.close();
             return true;
         } catch (IOException ex) {

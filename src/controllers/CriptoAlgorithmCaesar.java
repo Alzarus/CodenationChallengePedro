@@ -8,43 +8,45 @@ public class CriptoAlgorithmCaesar {
 
     private String received;
     private String processed;
-//TODO PEGAR INT VINDO NO JSON -> NUMERO_CASAS
-    public CriptoAlgorithmCaesar(String received) {
+
+    public CriptoAlgorithmCaesar(String received, int numberHouses) {
         this.setReceived(received);
-        process();
+        process(numberHouses);
     }
 
-    private void process() {
+    private void process(int numberHouses) {
         String received = this.getReceived();
+        int minus, rest;
 
         byte[] ascii = new byte[received.length()];
 
         for (int i = 0; i < received.length(); i++) {
             ascii[i] = (byte) received.charAt(i);
-            if ((ascii[i] >= 65 && ascii[i] <= 90) || (ascii[i] >= 97 && ascii[i] <= 122)) {
-                switch (ascii[i]) {
-                    case 88:
+            if (ascii[i] >= 65 && ascii[i] <= 90)  {
+                minus = 90 - ascii[i];
+                if(minus >= numberHouses){
+                    ascii[i] += numberHouses;
+                } else {
+                    if(minus == 0){
                         ascii[i] = 65;
-                        break;
-                    case 89:
-                        ascii[i] = 66;
-                        break;
-                    case 90:
-                        ascii[i] = 67;
-                        break;
-                    case 120:
-                        ascii[i] = 97;
-                        break;
-                    case 121:
-                        ascii[i] = 98;
-                        break;
-                    case 122:
-                        ascii[i] = 99;
-                        break;
-                    default:
-                        ascii[i] += 3;
-                        break;
+                    } else {
+                        rest = numberHouses - minus;
+                        ascii[i] = (byte) (65 + rest);
+                    }
                 }
+            }
+            if (ascii[i] >= 97 && ascii[i] <= 122){
+               minus = 122 - ascii[i];
+                if(minus >= numberHouses){
+                    ascii[i] += numberHouses;
+                } else {
+                    if(minus == 0){
+                        ascii[i] = 97;
+                    } else {
+                        rest = numberHouses - minus;
+                        ascii[i] = (byte) (97 + rest);    
+                    }
+                }               
             }
         }
         try {

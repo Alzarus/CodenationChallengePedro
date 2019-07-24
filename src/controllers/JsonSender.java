@@ -17,9 +17,9 @@ import org.json.JSONObject;
 public class JsonSender {
    
    HttpClient httpClient; 
-   //TODO
+   
    public JsonSender(){
-       httpClient = HttpClientBuilder.create().build(); //Use this instead 
+       httpClient = HttpClientBuilder.create().build();
    }
    //https://stackoverflow.com/questions/7181534/http-post-using-json-in-java
    //TERMINAR
@@ -27,8 +27,10 @@ public class JsonSender {
         HttpPost request;
         StringEntity params;
        try {
-        request = new HttpPost("http://yoururl");
-        params = new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
+        request = new HttpPost("https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=49539b7b95b049a8703af6705cc3042ae7ac75b6");
+        String jsonString = json.toString();
+        params = new StringEntity(jsonString);
+//        params = new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
         request.addHeader("content-type", "application/x-www-form-urlencoded");
         request.setEntity(params);
             try { 
@@ -39,8 +41,8 @@ public class JsonSender {
         return true;
        } catch (UnsupportedEncodingException ex) {
            Logger.getLogger(JsonSender.class.getName()).log(Level.SEVERE, null, ex);
+           return false;
        }
-       return false;
    }
    
 }
