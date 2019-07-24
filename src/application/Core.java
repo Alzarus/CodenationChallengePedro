@@ -15,6 +15,7 @@ import org.json.JSONObject;
 
 //TODO: REMOVER COLCHETES FORMATACAO ORGANIZATEJSON -> JSONREADER -> NEW: TALVEZ REMOVER ESSE METODO
 //TERMINAR JSONSENDER
+//ENVIAR!
 //https://www.codenation.dev/acceleration/reactnative-online-1/challenge/dev-ps
 
 
