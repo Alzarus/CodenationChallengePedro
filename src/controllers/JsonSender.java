@@ -16,18 +16,22 @@ import org.json.JSONObject;
 
 public class JsonSender {
    
-   HttpClient httpClient; 
+   private HttpClient httpClient;
+   private String url;
    
-   public JsonSender(){
-       httpClient = HttpClientBuilder.create().build();
+   public JsonSender(String url){
+       this.httpClient = HttpClientBuilder.create().build();
+       this.setUrl(url);
    }
    //https://stackoverflow.com/questions/7181534/http-post-using-json-in-java
+   
+   //THIS https://www.baeldung.com/httpurlconnection-post
    //TERMINAR
-   public boolean sendJson(JSONObject json){
+   public String sendJson(JSONObject json){
         HttpPost request;
         StringEntity params;
        try {
-        request = new HttpPost("https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=49539b7b95b049a8703af6705cc3042ae7ac75b6");
+        request = new HttpPost(this.getUrl());
         String jsonString = json.toString();
         params = new StringEntity(jsonString);
 //        params = new StringEntity("details={\"name\":\"myname\",\"age\":\"20\"} ");
@@ -35,14 +39,22 @@ public class JsonSender {
         request.setEntity(params);
             try { 
                 HttpResponse response = httpClient.execute(request);
+                return response.toString();
             } catch (IOException ex) {
                 Logger.getLogger(JsonSender.class.getName()).log(Level.SEVERE, null, ex);
             }
-        return true;
        } catch (UnsupportedEncodingException ex) {
            Logger.getLogger(JsonSender.class.getName()).log(Level.SEVERE, null, ex);
-           return false;
        }
+       return null;
    }
+   
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
    
 }

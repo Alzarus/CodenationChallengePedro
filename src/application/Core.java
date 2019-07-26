@@ -4,6 +4,7 @@ import controllers.CriptoAlgorithmCaesar;
 import controllers.CriptoAlgorithmSHA1;
 import controllers.JsonReader;
 import controllers.JsonSaver;
+import controllers.JsonSender;
 
 import java.io.IOException;
 
@@ -22,16 +23,18 @@ import org.json.JSONObject;
 public final class Core {
     
     private static Core INSTANCE = null;
+    private static final String RECEIVELINK = "https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=49539b7b95b049a8703af6705cc3042ae7ac75b6";
+    private static final String SENDLINK = "https://api.codenation.dev/v1/challenge/dev-ps/submit-solution?token=49539b7b95b049a8703af6705cc3042ae7ac75b6";
     
     private Core(){
         run();
     }
     
     private void run(){
-        JsonReader jr = null;
+        JsonReader jsonReader = null;
         try {
-            jr = new JsonReader("https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=49539b7b95b049a8703af6705cc3042ae7ac75b6");
-            JSONObject json = jr.getJson();
+            jsonReader = new JsonReader(RECEIVELINK);
+            JSONObject json = jsonReader.getJson();
 
             if(JsonSaver.saveJson(json)){
                 System.out.println("Arquivo recebido da URL e salvo!");
@@ -55,7 +58,11 @@ public final class Core {
             if(JsonSaver.saveJson(json)){
                 System.out.println("Resumo criptografado inserido no arquivo!");
             }
-
+            
+//            JsonSender jsonSender = new JsonSender(SENDLINK);
+//            String sendRequestResult = jsonSender.sendJson(json);
+//            System.out.println(sendRequestResult);
+            
         } catch (IOException | JSONException ex) {
             Logger.getLogger(Core.class.getName()).log(Level.SEVERE, null, ex);
         } 
