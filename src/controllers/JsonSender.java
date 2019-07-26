@@ -24,6 +24,7 @@ public class JsonSender {
        this.setUrl(url);
    }
    //https://stackoverflow.com/questions/7181534/http-post-using-json-in-java
+//   https://stackoverflow.com/questions/2469451/upload-files-from-java-client-to-a-http-server
    
    //THIS https://www.baeldung.com/httpurlconnection-post
    //TERMINAR
