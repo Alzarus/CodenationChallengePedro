@@ -55,48 +55,4 @@ public class JsonReader {
         }
         return null;
     }
-    
-    public static JSONObject organizateJson(JSONObject json){
-        try {
-            JSONObject organizatedJson = new JSONObject();
-            
-//            https://stackoverflow.com/questions/4576352/remove-all-occurrences-of-char-from-string
-//https://stackoverflow.com/questions/15609306/convert-string-to-json-array
-            //TODO NAO ESTA ORDENANDO CORRETAMENTE
-            organizatedJson.append("numero_casas", json.get("numero_casas").toString().replaceAll("\\[\\]", ""));
-            organizatedJson.append("token", json.get("token").toString().replaceAll("\\[\\]", ""));
-            organizatedJson.append("cifrado", json.get("cifrado").toString().replaceAll("\\[\\]", ""));
-            organizatedJson.append("decifrado", json.get("decifrado").toString().replaceAll("\\[\\]", ""));
-            organizatedJson.append("resumo_criptografico", json.get("resumo_criptografico").toString().replaceAll("\\[\\]", ""));
-            
-            return organizatedJson;
-            
-//            https://stackoverflow.com/questions/9151619/how-to-iterate-over-a-jsonobject
-            //iterar as keys e salvar na ordem
-//            Iterator<String> keys = json.keys();
-//            while(keys.hasNext()){
-//                String key = keys.next();
-//                if(json.get(key) instanceof JSONObject){
-//                    
-//                }
-//            }
-  
-        } catch (JSONException ex) {
-            Logger.getLogger(JsonReader.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        return null;
-    }
-
-    public static void main(String[] args) throws IOException, JSONException {
-        File answer = new File("./answer.json");
-        JSONObject json = readJsonFromUrl("https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=49539b7b95b049a8703af6705cc3042ae7ac75b6");
-        FileWriter fw = new FileWriter(answer);
-        fw.write(organizateJson(json).toString());
-        System.out.println(json.toString());
-        System.out.println(json.get("cifrado"));
-        fw.close();
-
-    //https://stackoverflow.com/questions/4308554/simplest-way-to-read-json-from-a-url-in-java/4308662#4308662
-    }
 }

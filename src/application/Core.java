@@ -14,11 +14,7 @@ import java.util.logging.Logger;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-//TODO: REMOVER COLCHETES FORMATACAO ORGANIZATEJSON -> JSONREADER -> NEW: TALVEZ REMOVER ESSE METODO
-//TERMINAR JSONSENDER
-//ENVIAR!
 //https://www.codenation.dev/acceleration/reactnative-online-1/challenge/dev-ps
-
 
 public final class Core {
     
@@ -59,8 +55,9 @@ public final class Core {
                 System.out.println("Resumo criptografado inserido no arquivo!");
             }
             
-//            JsonSender jsonSender = new JsonSender(SENDLINK);
+            JsonSender jsonSender = new JsonSender(SENDLINK);
 //            String sendRequestResult = jsonSender.sendJson(json);
+            jsonSender.sendJson(json);
 //            System.out.println(sendRequestResult);
             
         } catch (IOException | JSONException ex) {
